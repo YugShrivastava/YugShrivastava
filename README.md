@@ -2,7 +2,8 @@
 <h3 align="center">Always learning. Always building. Always evolving.</h3>
 
 <p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=yugshrivastava" alt="yugshrivastava" /></a> </p>
-- 💻 **Full Stack Developer | **⚡** Curious about AI, Games & Cybersecurity**
+
+- **💻 Full Stack Developer | ⚡ Exploring AI & Cybersecurity**
 
 - 🔭 I’m currently working on [TypeFrenzy](https://github.com/YugShrivastava/TypeFrenzy-Frontend)
 
