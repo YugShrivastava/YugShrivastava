@@ -1,8 +1,6 @@
 <h1 align="center">Hi 👋, I'm Yug</h1>
 <h3 align="center">Always learning. Always building. Always evolving.</h3>
 
-<p align="center"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=yugshrivastava" alt="yugshrivastava" /></a> </p>
-
 - **💻 Full Stack Developer | ⚡ Exploring AI & Cybersecurity**
 
 - 🔭 I’m currently working on [TypeFrenzy](https://github.com/YugShrivastava/TypeFrenzy-Frontend)
@@ -29,3 +27,4 @@
 
 <img src="https://github-readme-streak-stats.herokuapp.com/?user=yugshrivastava&" alt="yugshrivastava" style="display: block" />
 </div>
+<p align=""> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=yugshrivastava" alt="yugshrivastava" /></a> </p>
