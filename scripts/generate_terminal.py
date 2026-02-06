@@ -1,16 +1,26 @@
 from datetime import datetime
 import requests
+import random
 
-GITHUB_USERNAME = "YugShrivastava"
 learning_lines = [
     "Exploring Go & mastering concurrency patterns",
-    "Building scalable backend systems",
     "Diving deep into distributed systems & microservices",
     "Experimenting with Go routines & channel magic",
     "Studying backend architecture & system design",
     "Containerization & cloud orchestration adventures",
     "Exploring observability, monitoring & logging",
 ]
+
+quote_lines = [
+    "Simplicity is the soul of efficiency.",
+    "Don’t think of cost. Think of value.",
+    "So many books, so little time.",
+    "So many bugs, so little time.",
+    "So many things to learn, so little time.",
+    "Without code, life would be a runtime error."
+]
+
+GITHUB_USERNAME = "YugShrivastava"
 
 def fetch_github_stats():
     user_api = f"https://api.github.com/users/{GITHUB_USERNAME}"
@@ -43,7 +53,7 @@ def fetch_github_stats():
     return {
         "repos": repo_count,
         "stars": stars,
-        "commits": "dynamic",  # placeholder for now
+        "commits": "dynamic",
     }
 
 def fetch_total_commits():
@@ -89,8 +99,8 @@ BIRTH_DATE = datetime(2004, 12, 12)
 uptime_text = calculate_uptime(BIRTH_DATE)
 github_stats = fetch_github_stats()
 github_stats["commits"] = fetch_total_commits()
-learning_text = "Exploring Go & mastering concurrency patterns"
-quote_text = "Simplicity is the soul of efficiency."
+learning_text = random.choice(learning_lines)
+quote_text = random.choice(quote_lines)
 
 lines = [
     "██╗   ██╗██╗   ██╗ ██████╗ ",
