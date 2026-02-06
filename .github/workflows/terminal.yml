@@ -13,16 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Rust & Tokei
-        run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-          cargo install tokei
-          tokei --version
-          
-      - name: Generate Tokei JSON
-        run: tokei --output json > tokei.json
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

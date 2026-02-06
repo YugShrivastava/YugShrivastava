@@ -1,38 +1,15 @@
 from datetime import datetime
 import requests
-import json
-import random
-
-with open("tokei.json") as f:
-    data = json.load(f)
-
-loc = sum(lang["code"] for lang in data.values())
 
 GITHUB_USERNAME = "YugShrivastava"
 learning_lines = [
     "Exploring Go & mastering concurrency patterns",
     "Building scalable backend systems",
     "Diving deep into distributed systems & microservices",
-    "Optimizing DevOps pipelines for max efficiency",
     "Experimenting with Go routines & channel magic",
     "Studying backend architecture & system design",
-    "Scaling services for millions of users",
     "Containerization & cloud orchestration adventures",
     "Exploring observability, monitoring & logging",
-    "Making systems faster, reliable, and elegant"
-]
-
-quotes = [
-    "Stay curious, keep coding.",
-    "Code is like humor. When you have to explain it, it’s bad.",
-    "Simplicity is the soul of efficiency.",
-    "Hack the planet!",
-    "Eat, Sleep, Code, Repeat.",
-    "Good code is its own best documentation.",
-    "Debugging is like being the detective in a crime movie where you are also the murderer.",
-    "The best way to predict the future is to invent it.",
-    "Programs must be written for people to read, and only incidentally for machines to execute.",
-    "Performance is not about faster code, it's about smarter architecture."
 ]
 
 def fetch_github_stats():
@@ -92,16 +69,28 @@ def fetch_total_commits():
 
     return total_commits
 
+def calculate_uptime(start_date):
+    now = datetime.utcnow()
+    delta = now - start_date
 
-USERNAME = "Yug Shrivastava"
+    days = delta.days
+    years, days = divmod(days, 365)
+    months, days = divmod(days, 30)
+    hours, remainder = divmod(delta.seconds, 3600)
+    minutes = remainder // 60
+
+    return f"{years}y {months}m {days}d {hours:02}h {minutes:02}m"
+
 GREEN = "#39ff14"
 WHITE = "#e6e6e6"
 BG = "#0b0b0b"
+BIRTH_DATE = datetime(2004, 12, 12)
 
+uptime_text = calculate_uptime(BIRTH_DATE)
 github_stats = fetch_github_stats()
 github_stats["commits"] = fetch_total_commits()
-learning_text = random.choice(learning_lines)
-quote_text = random.choice(quotes)
+learning_text = "Exploring Go & mastering concurrency patterns"
+quote_text = "Simplicity is the soul of efficiency."
 
 lines = [
     "██╗   ██╗██╗   ██╗ ██████╗ ",
@@ -111,24 +100,35 @@ lines = [
     "   ██║   ╚██████╔╝╚██████╔╝",
     "   ╚═╝    ╚═════╝  ╚═════╝ ",
     "",
-    "────────────────────────────────────────",
-    f"USER      ▸ {USERNAME}",
+    "───────────────────────────────────────────",
+    "USER      ▸ Yug Shrivastava",
     "OS        ▸ Linux | Windows",
     "EDITOR    ▸ Zed · VS Code",
-    "STACK     ▸ Go · TypeScript · Python · C++",
+    "PL        ▸ Go · TypeScript · Python · C++",
     "LANG      ▸ English · Hindi",
-    "────────────────────────────────────────",
+    "───────────────────────────────────────────",
     "",
     "$ whoami",
-    "> engineer · builder · curious by default",
+    "> engineer · designs for failure, hopes for uptime",
     "",
     "$ github --stats",
-    f"Stars .......... {github_stats['stars']}",
-    f"Repositories ... {github_stats['repos']}",
-    f"Commits ........ {github_stats['commits']}",
-    f"Line of Code .... {loc}",
+    f"> Stars .......... {github_stats['stars']}",
+    f"> Repositories ... {github_stats['repos']}",
+    f"> Commits ........ {github_stats['commits']}",
     "",
-    "$ learning",
+    "$ stack --list --formatted",
+    "> backend",
+    "  · Node.js · Express.js · Vitest · Gin · FastAPI · REST · GraphQL",
+    "> frontend",
+    "  · React.js · Next.js · Tailwind CSS · Webpack · Vite",
+    "> database",
+    "  · PostgreSQL · MongoDB · Redis · MySQL",
+    "> ai/automation",
+    "  · LangChain · LangGraph · PyTorch · MCP",
+    "> deployment/tools",
+    "  · Docker · AWS · Nginx · YAML · Figma · Git · Cloudflare",
+    "",
+    "$ current --focus",
     f"> {learning_text}",
     "",
     # "$ current-project",
@@ -141,7 +141,7 @@ lines = [
     # "> celestial_nomad12 · dynamic",
     # "",
     "$ uptime",
-    f"> online · {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}",
+    f"> online · {uptime_text}",
     "",
     "$ quote",
     f'> {quote_text}',
