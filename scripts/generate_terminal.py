@@ -1,6 +1,7 @@
 from datetime import datetime
 import requests
 import random
+import html
 
 learning_lines = [
     "Exploring Go & mastering concurrency patterns",
@@ -161,16 +162,19 @@ y = 30
 svg_lines = []
 
 for line in lines:
+    safe_line = html.escape(line)
+
     if line.startswith("$"):
         svg_lines.append(
             f'<text x="20" y="{y}" fill="{GREEN}">$</text>'
-            f'<text x="35" y="{y}" fill="{WHITE}">{line[1:]}</text>'
+            f'<text x="35" y="{y}" fill="{WHITE}">{html.escape(line[1:])}</text>'
         )
     else:
         svg_lines.append(
-            f'<text x="20" y="{y}" fill="{WHITE}">{line}</text>'
+            f'<text x="20" y="{y}" fill="{WHITE}">{safe_line}</text>'
         )
     y += 22
+
 
 svg = f"""
 <svg width="900" height="{y+20}" xmlns="http://www.w3.org/2000/svg">
