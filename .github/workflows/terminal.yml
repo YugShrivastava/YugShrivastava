@@ -19,6 +19,9 @@ jobs:
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
           cargo install tokei
           tokei --version
+          
+      - name: Generate Tokei JSON
+        run: tokei --output json > tokei.json
 
       - name: Set up Python
         uses: actions/setup-python@v5
