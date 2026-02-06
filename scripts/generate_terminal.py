@@ -1,5 +1,4 @@
 from datetime import datetime
-from shlex import quote
 import requests
 import json
 import random
@@ -40,15 +39,29 @@ def fetch_github_stats():
     user_api = f"https://api.github.com/users/{GITHUB_USERNAME}"
     repos_api = f"https://api.github.com/users/{GITHUB_USERNAME}/repos?per_page=100"
 
-    # User profile
-    user_data = requests.get(user_api).json()
+    user_resp = requests.get(user_api)
+    if user_resp.status_code != 200:
+        print("Warning: GitHub API rate limit or error")
+        user_data = {}
+    else:
+        user_data = user_resp.json()
+
     repo_count = user_data.get("public_repos", 0)
 
-    # Stars
     stars = 0
-    repos_data = requests.get(repos_api).json()
+    repos_resp = requests.get(repos_api)
+    if repos_resp.status_code != 200:
+        print("Warning: Could not fetch repos")
+        repos_data = []
+    else:
+        repos_data = repos_resp.json()
+        if isinstance(repos_data, dict) and "message" in repos_data:
+            print(f"GitHub API warning: {repos_data['message']}")
+            repos_data = []
+
     for repo in repos_data:
-        stars += repo.get("stargazers_count", 0)
+        if isinstance(repo, dict):
+            stars += repo.get("stargazers_count", 0)
 
     return {
         "repos": repo_count,
